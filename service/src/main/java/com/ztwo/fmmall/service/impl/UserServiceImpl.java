@@ -51,14 +51,8 @@ public class UserServiceImpl implements UserService {
             if (user.getPassword().equals(encodePwd)) {
                 //生成token
                 String token = JwtUtil.createToken(user.getUsername(), user.getPassword());
-                //响应token，username，userImg
-                Map<String, Object> map = new HashMap<>();
-                map.put("token", token);
-                map.put("username", user.getUsername());
-                map.put("userImg", user.getUserImg());
-
-                //将token响应返回到前端的cookie中保存
-                resultVO = ResultVO.getSuccessVo("登陆成功", map);
+                //返回token和user对象
+                resultVO = ResultVO.getSuccessVo(token, user);
             } else {
                 resultVO = ResultVO.getErrorVo("登陆失败，账号密码有误");
             }
