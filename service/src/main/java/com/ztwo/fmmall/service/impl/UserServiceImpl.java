@@ -3,6 +3,7 @@ package com.ztwo.fmmall.service.impl;
 import com.ztwo.fmmall.bean.Users;
 import com.ztwo.fmmall.dao.UsersMapper;
 import com.ztwo.fmmall.service.UserService;
+import com.ztwo.fmmall.util.JwtUtil;
 import com.ztwo.fmmall.util.Md5Util;
 import com.ztwo.fmmall.vo.ResultVO;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,9 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -44,10 +47,20 @@ public class UserServiceImpl implements UserService {
             //加密password
             String encodePwd = Md5Util.encode(password);
             //密码校验
-            if (users.get(0).getPassword().equals(encodePwd)) {
-                resultVO = ResultVO.getSuccessVo("登陆成功", users.get(0));
+            Users user = users.get(0);
+            if (user.getPassword().equals(encodePwd)) {
+                //生成token
+                String token = JwtUtil.createToken(user.getUsername(), user.getPassword());
+                //响应token，username，userImg
+                Map<String, Object> map = new HashMap<>();
+                map.put("token", token);
+                map.put("username", user.getUsername());
+                map.put("userImg", user.getUserImg());
+
+                //将token响应返回到前端的cookie中保存
+                resultVO = ResultVO.getSuccessVo("登陆成功", map);
             } else {
-                resultVO = ResultVO.getErrorVo("登陆失败，密码错误");
+                resultVO = ResultVO.getErrorVo("登陆失败，账号密码有误");
             }
         }
 
@@ -58,6 +71,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public ResultVO register(String username, String password) {
         ResultVO resultVO;
+        if (username == null || password == null) {
+            resultVO = ResultVO.getErrorVo("参数错误");
+            return resultVO;
+        }
         //数据库查询
         Example example = new Example(Users.class);
         Example.Criteria criteria = example.createCriteria();
