@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://192.168.40.119:33060/fmmall?characterEncoding=UTF-8&useSSL=false&useUnicode=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: admin
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.ztwo.fmmall.bean
