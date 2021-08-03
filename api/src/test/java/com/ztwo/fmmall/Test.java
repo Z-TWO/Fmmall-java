@@ -2,11 +2,10 @@ package com.ztwo.fmmall;
 
 
 import com.ztwo.SpringDemo1Application;
-import com.ztwo.fmmall.bean.Category;
-import com.ztwo.fmmall.bean.CategoryVO;
-import com.ztwo.fmmall.bean.IndexImg;
+import com.ztwo.fmmall.bean.*;
 import com.ztwo.fmmall.dao.CategoryMapper;
 import com.ztwo.fmmall.dao.IndexImgMapper;
+import com.ztwo.fmmall.dao.ProductMapper;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +26,9 @@ public class Test {
     @Resource
     private CategoryMapper categoryMapper;
 
+    @Resource
+    private ProductMapper productMapper;
+
 
     @org.junit.Test
     public void CategoryMapperTest() {
@@ -39,6 +41,14 @@ public class Test {
                     System.out.println("\t\t" + c3);
                 }
             }
+        }
+    }
+
+    @org.junit.Test
+    public void RecommendProductTest() {
+        List<ProductVO> productVOS = productMapper.selectRecommendProduct();
+        for (ProductVO productVO : productVOS) {
+            System.out.println(productVO);
         }
     }
 }

@@ -14,4 +14,7 @@ public interface IndexService {
 
     //获取首页分类
     ResultVO listIndexCategory();
+
+    //获取首页推荐商品
+    ResultVO listIndexRecommendProduct();
 }

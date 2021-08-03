@@ -32,8 +32,14 @@ public class IndexController {
     }
 
     @ApiOperation("获取分类信息")
-    @RequestMapping(value = "/category",method = RequestMethod.GET)
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
     public ResultVO listIndexCategory() {
         return indexService.listIndexCategory();
+    }
+
+    @ApiOperation("获取推荐商品信息")
+    @RequestMapping(value = "/recommendProduct", method = RequestMethod.GET)
+    public ResultVO listIndexRecommendProduct() {
+        return indexService.listIndexRecommendProduct();
     }
 }

@@ -219,4 +219,19 @@ public class Product {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", categoryId=" + categoryId +
+                ", rootCategoryId=" + rootCategoryId +
+                ", soldNum=" + soldNum +
+                ", productStatus=" + productStatus +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
