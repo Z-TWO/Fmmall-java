@@ -210,4 +210,11 @@ public class Category {
     public void setCategoryBgColor(String categoryBgColor) {
         this.categoryBgColor = categoryBgColor;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryName='" + categoryName + '\'' +
+                '}';
+    }
 }

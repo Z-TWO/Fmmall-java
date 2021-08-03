@@ -2,7 +2,10 @@ package com.ztwo.fmmall;
 
 
 import com.ztwo.SpringDemo1Application;
+import com.ztwo.fmmall.bean.Category;
+import com.ztwo.fmmall.bean.CategoryVO;
 import com.ztwo.fmmall.bean.IndexImg;
+import com.ztwo.fmmall.dao.CategoryMapper;
 import com.ztwo.fmmall.dao.IndexImgMapper;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringBootConfiguration;
@@ -22,13 +25,20 @@ import java.util.List;
 public class Test {
 
     @Resource
-    private IndexImgMapper indexImgMapper;
+    private CategoryMapper categoryMapper;
+
 
     @org.junit.Test
-    public void mapperTest() {
-        List<IndexImg> indexImgs = indexImgMapper.selectIndexImgActive();
-        for (IndexImg indexImg : indexImgs) {
-            System.out.println(indexImg);
+    public void CategoryMapperTest() {
+        List<CategoryVO> categories1 = categoryMapper.selectAllCategories();
+        for (CategoryVO c1 : categories1) {
+            System.out.println(c1);
+            for (CategoryVO c2 : c1.getCategoryList()) {
+                System.out.println("\t" + c2);
+                for (CategoryVO c3 : c2.getCategoryList()) {
+                    System.out.println("\t\t" + c3);
+                }
+            }
         }
     }
 }

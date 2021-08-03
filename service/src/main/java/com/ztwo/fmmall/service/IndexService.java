@@ -10,5 +10,8 @@ import com.ztwo.fmmall.vo.ResultVO;
 public interface IndexService {
 
     //获取首页banner轮播图
-    public ResultVO listIndexImg();
+    ResultVO listIndexImg();
+
+    //获取首页分类
+    ResultVO listIndexCategory();
 }

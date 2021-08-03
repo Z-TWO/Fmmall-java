@@ -19,14 +19,21 @@ import javax.annotation.Resource;
 @Api(value = "首页轮播图...", tags = "首页管理")
 @RestController
 @CrossOrigin
+@RequestMapping("/index")
 public class IndexController {
 
     @Resource
     private IndexService indexService;
 
     @ApiOperation("获取轮播图")
-    @RequestMapping(value = "/indexImg", method = RequestMethod.GET)
+    @RequestMapping(value = "/bannerImg", method = RequestMethod.GET)
     public ResultVO listIndexImg() {
         return indexService.listIndexImg();
+    }
+
+    @ApiOperation("获取分类信息")
+    @RequestMapping(value = "/category",method = RequestMethod.GET)
+    public ResultVO listIndexCategory() {
+        return indexService.listIndexCategory();
     }
 }
