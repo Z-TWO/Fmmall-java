@@ -17,4 +17,7 @@ public interface IndexService {
 
     //获取首页推荐商品
     ResultVO listIndexRecommendProduct();
+
+    //获取首页分类中的前6销量产品
+    ResultVO listIndexTop6CategoryProduct();
 }

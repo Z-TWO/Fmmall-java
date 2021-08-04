@@ -51,4 +51,18 @@ public class Test {
             System.out.println(productVO);
         }
     }
+
+    @org.junit.Test
+    public void Top6ProductTest() {
+        List<CategoryVO> categories = categoryMapper.selectFirstLevelCategories();
+        for (CategoryVO category : categories) {
+            System.out.println(category);
+            for (ProductVO productVO : category.getProductVOList()) {
+                System.out.println("\t"+productVO);
+                for (ProductImg productImg : productVO.getImgList()) {
+                    System.out.println("\t\t"+productImg);
+                }
+            }
+        }
+    }
 }

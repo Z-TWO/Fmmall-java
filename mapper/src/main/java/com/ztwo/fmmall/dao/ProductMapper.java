@@ -12,4 +12,6 @@ public interface ProductMapper extends GeneralDAO<Product> {
     //获取首页推荐商品
     List<ProductVO> selectRecommendProduct();
 
+    List<ProductVO> selectTop6ByCategory(Integer cid);
+
 }

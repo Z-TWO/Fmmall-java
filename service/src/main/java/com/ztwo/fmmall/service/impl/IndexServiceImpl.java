@@ -60,5 +60,15 @@ public class IndexServiceImpl implements IndexService {
         }
     }
 
+    @Override
+    public ResultVO listIndexTop6CategoryProduct() {
+        List<CategoryVO> categories = categoryMapper.selectFirstLevelCategories();
+        if (categories == null || categories.size() == 0) {
+            return ResultVO.getErrorVo("获取失败");
+        } else {
+            return ResultVO.getSuccessVo("获取成功", categories);
+        }
+    }
+
 
 }

@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface CategoryMapper extends GeneralDAO<Category> {
 
-    //连接查询
+    //查询所有分类和子分类
     List<CategoryVO> selectAllCategories();
 
-    //子查询
-    List<CategoryVO> selectAllCategoriesById();
+    //查询一级分类
+    List<CategoryVO> selectFirstLevelCategories();
 
 }

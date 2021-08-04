@@ -42,4 +42,10 @@ public class IndexController {
     public ResultVO listIndexRecommendProduct() {
         return indexService.listIndexRecommendProduct();
     }
+
+    @ApiOperation("获取每个分类中销量前六的商品")
+    @RequestMapping(value = "/categoryTop6", method = RequestMethod.GET)
+    public ResultVO listIndexTop6CategoryProduct() {
+        return indexService.listIndexTop6CategoryProduct();
+    }
 }

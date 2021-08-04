@@ -11,11 +11,21 @@ public class CategoryVO extends Category {
 
     private List<CategoryVO> categoryList;
 
+    private List<ProductVO> productVOList;
+
     public List<CategoryVO> getCategoryList() {
         return categoryList;
     }
 
     public void setCategoryList(List<CategoryVO> categoryList) {
         this.categoryList = categoryList;
+    }
+
+    public List<ProductVO> getProductVOList() {
+        return productVOList;
+    }
+
+    public void setProductVOList(List<ProductVO> productVOList) {
+        this.productVOList = productVOList;
     }
 }
