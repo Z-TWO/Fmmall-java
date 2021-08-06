@@ -9,6 +9,6 @@ import java.util.List;
 public interface IndexImgMapper extends GeneralDAO<IndexImg> {
 
     //查询当前status为1且以seq排序
-    public List<IndexImg> selectIndexImgActive();
+    List<IndexImg> selectIndexImgActive();
 
 }

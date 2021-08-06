@@ -6,6 +6,7 @@ import com.ztwo.fmmall.bean.*;
 import com.ztwo.fmmall.dao.CategoryMapper;
 import com.ztwo.fmmall.dao.IndexImgMapper;
 import com.ztwo.fmmall.dao.ProductMapper;
+import com.ztwo.fmmall.service.ProductService;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,5 +65,13 @@ public class Test {
                 }
             }
         }
+    }
+
+    @Resource
+    private ProductService productService;
+
+    @org.junit.Test
+    public void SelectProductTest() {
+        productService.getProductBasicInfo(1);
     }
 }

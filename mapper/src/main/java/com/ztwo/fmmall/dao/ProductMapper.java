@@ -9,9 +9,10 @@ import java.util.List;
 
 public interface ProductMapper extends GeneralDAO<Product> {
 
-    //获取首页推荐商品
+    //查询最近上架前3个商品
     List<ProductVO> selectRecommendProduct();
 
+    //查询指定分类的销售量前6的商品
     List<ProductVO> selectTop6ByCategory(Integer cid);
 
 }

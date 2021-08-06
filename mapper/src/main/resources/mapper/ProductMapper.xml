@@ -54,6 +54,7 @@
                content
         from product
         WHERE root_category_id = #{cid}
+          and product_status = 1
         ORDER BY sold_num desc LIMIT 0,6
     </select>
 

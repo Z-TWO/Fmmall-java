@@ -43,7 +43,7 @@ public class IndexController {
         return indexService.listIndexRecommendProduct();
     }
 
-    @ApiOperation("获取每个分类中销量前六的商品")
+    @ApiOperation("获取热销商品信息")
     @RequestMapping(value = "/categoryTop6", method = RequestMethod.GET)
     public ResultVO listIndexTop6CategoryProduct() {
         return indexService.listIndexTop6CategoryProduct();
