@@ -5,6 +5,7 @@ import com.ztwo.SpringDemo1Application;
 import com.ztwo.fmmall.bean.*;
 import com.ztwo.fmmall.dao.CategoryMapper;
 import com.ztwo.fmmall.dao.IndexImgMapper;
+import com.ztwo.fmmall.dao.ProductCommentsMapper;
 import com.ztwo.fmmall.dao.ProductMapper;
 import com.ztwo.fmmall.service.ProductService;
 import org.junit.runner.RunWith;
@@ -59,19 +60,20 @@ public class Test {
         for (CategoryVO category : categories) {
             System.out.println(category);
             for (ProductVO productVO : category.getProductVOList()) {
-                System.out.println("\t"+productVO);
+                System.out.println("\t" + productVO);
                 for (ProductImg productImg : productVO.getImgList()) {
-                    System.out.println("\t\t"+productImg);
+                    System.out.println("\t\t" + productImg);
                 }
             }
         }
     }
 
+
     @Resource
     private ProductService productService;
 
     @org.junit.Test
-    public void SelectProductTest() {
-        productService.getProductBasicInfo(1);
+    public void ProductCommentTest() {
+        productService.analysisProductComment("3");
     }
 }
