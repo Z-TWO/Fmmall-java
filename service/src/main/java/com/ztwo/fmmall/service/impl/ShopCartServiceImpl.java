@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +43,21 @@ public class ShopCartServiceImpl implements ShopCartService {
             return ResultVO.getErrorVo("参数错误");
         } else {
             List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.listShoppingCartByUserId(userId);
+            return ResultVO.getSuccessVo("查询成功", shoppingCartVOS);
+        }
+    }
+
+    @Override
+    public ResultVO listShoppingCart(String cids) {
+        if (cids == null || cids.equals("")) {
+            return ResultVO.getErrorVo("参数错误");
+        } else {
+            String[] split = cids.split(",");
+            ArrayList<Integer> list = new ArrayList<>();
+            for (String s : split) {
+                list.add(Integer.parseInt(s));
+            }
+            List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.listShoppingCartByCartIds(list);
             return ResultVO.getSuccessVo("查询成功", shoppingCartVOS);
         }
     }

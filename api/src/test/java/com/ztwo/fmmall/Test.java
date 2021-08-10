@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,17 @@ public class Test {
     @org.junit.Test
     public void shoppingCartTest() {
         List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.listShoppingCartByUserId(6);
+        for (ShoppingCartVO shoppingCartVO : shoppingCartVOS) {
+            System.out.println(shoppingCartVO);
+        }
+    }
+
+    @org.junit.Test
+    public void shoppingCartTest1() {
+        List<Integer> list = new ArrayList<>();
+        list.add(29);
+        list.add(30);
+        List<ShoppingCartVO> shoppingCartVOS = shoppingCartMapper.listShoppingCartByCartIds(list);
         for (ShoppingCartVO shoppingCartVO : shoppingCartVOS) {
             System.out.println(shoppingCartVO);
         }

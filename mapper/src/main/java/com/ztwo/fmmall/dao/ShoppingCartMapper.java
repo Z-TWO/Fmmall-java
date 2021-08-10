@@ -9,10 +9,13 @@ import java.util.List;
 
 public interface ShoppingCartMapper extends GeneralDAO<ShoppingCart> {
 
-    //查询指定用户购物车记录
+    //查询购物车记录---userId
     List<ShoppingCartVO> listShoppingCartByUserId(Integer userId);
 
     //修改购物车商品数量
     Integer updateShoppingCartByCartId(Integer cartId, Integer cartNum);
+
+    //查询购物车记录---cartIds
+    List<ShoppingCartVO> listShoppingCartByCartIds(List<Integer> cids);
 
 }

@@ -27,13 +27,24 @@ public class ShopCartController {
 
     @ApiOperation("获取用户购物车")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "Integer", name = "userId", value = "用户id", required = true),
+            @ApiImplicitParam(dataType = "Integer", name = "userId", value = "用户ID", required = true),
             @ApiImplicitParam(dataType = "String", name = "token", value = "token", required = true)
     })
     @RequestMapping(value = "/listShoppingCart", method = RequestMethod.GET)
     public ResultVO listShopCart(Integer userId, @RequestHeader String token) {
         return shopCartService.listShoppingCart(userId);
     }
+
+    @ApiOperation("获取用户购物车(订单界面)")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "String", name = "cids", value = "订单号字符串", required = true),
+            @ApiImplicitParam(dataType = "String", name = "token", value = "token", required = true)
+    })
+    @RequestMapping(value = "/listShoppingCartByCids", method = RequestMethod.GET)
+    public ResultVO listShopCartByCids(String cids, @RequestHeader String token) {
+        return shopCartService.listShoppingCart(cids);
+    }
+
 
     @ApiOperation("添加购物车")
     @ApiImplicitParams({
