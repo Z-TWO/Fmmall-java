@@ -12,4 +12,10 @@ public interface ShopCartService {
 
     //添加购物车
     ResultVO addShoppingCart(ShoppingCart shoppingCart);
+
+    //获取用户购物车记录
+    ResultVO listShoppingCart(Integer userId);
+
+    //修改购物车商品数量
+    ResultVO updateShoppingCartNum(Integer cartId, Integer num);
 }

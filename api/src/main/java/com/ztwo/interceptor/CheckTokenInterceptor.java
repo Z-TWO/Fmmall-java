@@ -19,6 +19,11 @@ import java.io.PrintWriter;
  */
 @Component
 public class CheckTokenInterceptor implements HandlerInterceptor {
+
+    //token校验响应码常量
+    private static final Integer LOGIN_FAIL_NOT = 200;//未登录
+    private static final Integer LOGIN_FAIL_OVERDUE = 300;//用户登陆实效
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //放行option试探请求
@@ -39,13 +44,13 @@ public class CheckTokenInterceptor implements HandlerInterceptor {
                 return true;
             } catch (ExpiredJwtException e) {
                 //token过期
-                doResponse(response, ResultVO.getErrorVo("登录过期，请重新登录"));
+                doResponse(response, ResultVO.getErrorVo(LOGIN_FAIL_OVERDUE, "登录过期，请重新登录"));
             } catch (UnsupportedJwtException e) {
                 //token不合法
                 doResponse(response, ResultVO.getErrorVo("token不合法"));
             } catch (Exception e) {
                 //重新登录
-                doResponse(response, ResultVO.getErrorVo("请重新登录"));
+                doResponse(response, ResultVO.getErrorVo(LOGIN_FAIL_NOT, "请重新登录"));
             }
         }
         return false;

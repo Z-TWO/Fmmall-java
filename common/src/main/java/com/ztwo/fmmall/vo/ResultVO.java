@@ -40,6 +40,13 @@ public class ResultVO implements Serializable {
         return getSuccessVo(msg, null);
     }
 
+    public static ResultVO getErrorVo(Integer code, String msg) {
+        ResultVO resultVO = new ResultVO();
+        resultVO.code = code;
+        resultVO.msg = msg;
+        return resultVO;
+    }
+
     public static ResultVO getErrorVo(String msg, Object data) {
         ResultVO resultVO = new ResultVO();
         resultVO.code = 1;

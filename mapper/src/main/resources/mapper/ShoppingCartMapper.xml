@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ztwo.fmmall.dao.ShoppingCartMapper">
-  <resultMap id="BaseResultMap" type="com.ztwo.fmmall.bean.ShoppingCart">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
-    <result column="product_id" jdbcType="VARCHAR" property="productId" />
-    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="cart_num" jdbcType="VARCHAR" property="cartNum" />
-    <result column="cart_time" jdbcType="VARCHAR" property="cartTime" />
-    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
-    <result column="sku_props" jdbcType="VARCHAR" property="skuProps" />
-  </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.ztwo.fmmall.bean.ShoppingCart">
+        <id column="cart_id" jdbcType="INTEGER" property="cartId"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="sku_id" jdbcType="VARCHAR" property="skuId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="cart_num" jdbcType="VARCHAR" property="cartNum"/>
+        <result column="cart_time" jdbcType="VARCHAR" property="cartTime"/>
+        <result column="product_price" jdbcType="DECIMAL" property="productPrice"/>
+        <result column="sku_props" jdbcType="VARCHAR" property="skuProps"/>
+    </resultMap>
+
+    <resultMap id="shoppingCartVOMap" type="com.ztwo.fmmall.bean.ShoppingCartVO">
+        <id column="cart_id" jdbcType="INTEGER" property="cartId"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="sku_id" jdbcType="VARCHAR" property="skuId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="cart_num" jdbcType="VARCHAR" property="cartNum"/>
+        <result column="cart_time" jdbcType="VARCHAR" property="cartTime"/>
+        <result column="product_price" jdbcType="DECIMAL" property="productPrice"/>
+        <result column="sku_props" jdbcType="VARCHAR" property="skuProps"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="original_price" jdbcType="INTEGER" property="originalPrice" />
+        <result column="sell_price" jdbcType="INTEGER" property="sellPrice" />
+        <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    </resultMap>
+
+    <select id="listShoppingCartByUserId" resultMap="shoppingCartVOMap">
+        select c.*, p.product_name, i.url, s.original_price, s.sell_price, s.sku_name
+        from shopping_cart c
+        join product p
+        join product_img i
+        join product_sku s
+        on c.product_id = p.product_id
+        and p.product_id = i.item_id
+        and s.sku_id = c.sku_id
+        where user_id = #{userId} and i.is_main = 1
+    </select>
+
+    <update id="updateShoppingCartByCartId">
+        update shopping_cart
+        set cart_num=#{cartNum},
+        where cart_id = #{cartId}
+    </update>
+
 </mapper>

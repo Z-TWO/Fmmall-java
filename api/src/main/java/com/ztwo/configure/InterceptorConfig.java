@@ -16,13 +16,13 @@ import javax.annotation.Resource;
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 
-    @Autowired
+    @Resource
     private CheckTokenInterceptor checkTokenInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(checkTokenInterceptor)
-                .addPathPatterns("/user/shopcart");
+                .addPathPatterns("/shop/**");
     }
 }
 

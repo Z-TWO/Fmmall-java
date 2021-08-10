@@ -197,4 +197,32 @@ public class ShoppingCart {
     public void setSkuProps(String skuProps) {
         this.skuProps = skuProps;
     }
+
+    public ShoppingCart() {
+
+    }
+
+    public ShoppingCart(String productId, String skuId, String userId, String cartNum, String cartTime, BigDecimal productPrice, String skuProps) {
+        this.productId = productId;
+        this.skuId = skuId;
+        this.userId = userId;
+        this.cartNum = cartNum;
+        this.cartTime = cartTime;
+        this.productPrice = productPrice;
+        this.skuProps = skuProps;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "cartId=" + cartId +
+                ", productId='" + productId + '\'' +
+                ", skuId='" + skuId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", cartNum='" + cartNum + '\'' +
+                ", cartTime='" + cartTime + '\'' +
+                ", productPrice=" + productPrice +
+                ", skuProps='" + skuProps + '\'' +
+                '}';
+    }
 }
